@@ -539,6 +539,15 @@
   .works__item figcaption span { color: var(--v-ink-soft); font-size: var(--v-t-xs); }
   @media (max-width: 860px) { .works__grid { grid-template-columns: 1fr 1fr; } .works__item--big { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 4 / 3; } }
   @media (max-width: 520px) { .works__grid { grid-template-columns: 1fr; } }
+
+  /* ---- «Наши работы»: подпись под фото, без плашек поверх ---- */
+  .works__item { aspect-ratio: auto; overflow: visible; background: none; box-shadow: none; display: flex; }
+  .works__item figure { margin: 0; width: 100%; display: flex; flex-direction: column; gap: .6rem; }
+  .works__item img { height: auto; aspect-ratio: 4 / 3; border-radius: var(--v-radius); box-shadow: var(--v-e1); }
+  .works__item--big img { flex: 1; min-height: 0; height: auto; aspect-ratio: auto; }
+  .works__item figcaption { position: static; padding: 0; border-radius: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; display: block; font-family: var(--v-font-display); font-weight: 600; font-size: var(--v-t-sm); color: var(--v-ink); }
+  .works__item:hover img { transform: none; }
+  .works__item figure { overflow: hidden; }
   /* ---- микро-взаимодействия кнопок ---- */
   .v-btn { position: relative; overflow: hidden; transition: transform .25s var(--v-ease-out), box-shadow .25s var(--v-ease-out), background-color .25s; }
   .v-btn::after { content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%; background: linear-gradient(100deg, transparent, rgb(255 255 255 / .45), transparent); transform: skewX(-20deg); transition: left .6s var(--v-ease-out); pointer-events: none; }
@@ -822,12 +831,12 @@
           <p>Каждый объект принят по акту. Здесь примеры готовых построек: дома по каркасной технологии и бани.</p>
         </header>
         <ul class="works__grid" data-v-in data-v-stagger="60">
-          <li class="works__item works__item--big"><figure><img src="assets/works1.webp" alt="Двухэтажный дом с коричневым фасадом и балконом" loading="lazy" decoding="async"></figure></li>
-          <li class="works__item"><figure><img src="assets/works2.webp" alt="Дом-шале с остеклённым фасадом в лесу" loading="lazy" decoding="async"></figure></li>
-          <li class="works__item"><figure><img src="assets/works3.webp" alt="Баня из бревна с дымоходом в лесу" loading="lazy" decoding="async"></figure></li>
-          <li class="works__item"><figure><img src="assets/works4.webp" alt="Дом-шале с остеклённым фасадом и террасой" loading="lazy" decoding="async"></figure></li>
-          <li class="works__item"><figure><img src="assets/works5.webp" alt="Дом с мансардой и террасой на закате" loading="lazy" decoding="async"></figure></li>
-          <li class="works__item"><figure><img src="assets/works6.webp" alt="Дом в стиле барнхаус с металлической кровлей" loading="lazy" decoding="async"></figure></li>
+          <li class="works__item works__item--big"><figure><img src="assets/works1.webp" alt="Двухэтажный дом с коричневым фасадом и балконом" loading="lazy" decoding="async"><figcaption>Двухэтажный дом 8×10</figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works2.webp" alt="Дом-шале с остеклённым фасадом в лесу" loading="lazy" decoding="async"><figcaption>Дом-шале в лесу 7×9</figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works3.webp" alt="Баня из бревна с дымоходом в лесу" loading="lazy" decoding="async"><figcaption>Баня из бревна 4×6</figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works4.webp" alt="Дом-шале с остеклённым фасадом и террасой" loading="lazy" decoding="async"><figcaption>Дом-шале со стеклом</figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works5.webp" alt="Дом с мансардой и террасой на закате" loading="lazy" decoding="async"><figcaption>Дом с мансардой и террасой</figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works6.webp" alt="Дом в стиле барнхаус с металлической кровлей" loading="lazy" decoding="async"><figcaption>Дом в стиле барнхаус</figcaption></figure></li>
         </ul>
       </div>
     </section>

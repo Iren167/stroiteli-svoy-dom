@@ -510,6 +510,19 @@
     .cover .title { height: auto !important; min-height: 0; padding-top: 1.4rem; padding-bottom: 1.6rem; justify-content: flex-start; }
     .title__body { background: none; padding: 0; margin-top: 0; }
   }
+
+  /* ---- телефон: глава «Коробка» без закрепления: фото, затем три условия списком ---- */
+  @media (max-width: 860px) {
+    .frame { display: flex; flex-direction: column; height: auto; }
+    .frame .frame__fig { order: 0; height: 40svh; min-height: 220px; }
+    .frame .frame__copy { order: 1; position: static; padding: 0 var(--v-gutter) 1.5rem; }
+    .frame .frame__head { position: static; display: block; padding-top: 1.4rem; margin-bottom: .4rem; }
+    .frame .frame__cue { position: static; padding-block: 1.2rem; border-bottom: 1px solid var(--v-hair); }
+    .frame .frame__cue:last-of-type { border-bottom: 0; }
+    .frame .frame__cue > * { max-width: none; }
+    .frame .frame__steps { display: none; }
+  }
+  @media (max-width: 860px) { .x-flat { position: static !important; height: auto !important; overflow: visible !important; } }
   /* ---- микро-взаимодействия кнопок ---- */
   .v-btn { position: relative; overflow: hidden; transition: transform .25s var(--v-ease-out), box-shadow .25s var(--v-ease-out), background-color .25s; }
   .v-btn::after { content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%; background: linear-gradient(100deg, transparent, rgb(255 255 255 / .45), transparent); transform: skewX(-20deg); transition: left .6s var(--v-ease-out); pointer-events: none; }
@@ -896,7 +909,14 @@
   if (MOBILE) {
     var cv = document.getElementById('cover');
     cv.setAttribute('data-v-act', 'flow'); cv.removeAttribute('data-v-span');
+    var cst = cv.querySelector('[data-v-stage]'); if (cst) cst.classList.add('x-flat');
     var cue = cv.querySelector('.title__body[data-v-cue]'); if (cue) cue.removeAttribute('data-v-cue');
+    var fr = document.querySelector('.frame'), sec = fr && fr.closest('[data-v-act]');
+    if (sec) {
+      sec.setAttribute('data-v-act', 'flow'); sec.removeAttribute('data-v-span');
+      var st = sec.querySelector('[data-v-stage]'); if (st) st.classList.add('x-flat');
+      [].forEach.call(sec.querySelectorAll('[data-v-cue]'), function (e) { e.removeAttribute('data-v-cue'); e.removeAttribute('data-v-rise'); });
+    }
   }
   Vibe.mount(document.querySelector('.v-page'));
 

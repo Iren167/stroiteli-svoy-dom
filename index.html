@@ -475,9 +475,9 @@
   }
 
   /* ---- «Отделка»: тёплый тёмный орех вместо тёмного леса, песочный акцент ---- */
-  .inter--dark, .chapter--dark { background: #2b211b; --v-ink: #f6f0e8; --v-ink-soft: #bcae9f; --v-surface: #382c24; --v-accent: #dcb68c; --v-accent-ink: #2b211b;
-    --v-hair: color-mix(in oklab, #f6f0e8 16%, transparent); --v-hair-strong: color-mix(in oklab, #f6f0e8 32%, transparent); color: var(--v-ink); }
-  .inter--dark .inter__num em { color: #dcb68c; }
+  .inter--dark, .chapter--dark { background: #f7f1e7; --v-ink: #13201a; --v-ink-soft: #657068; --v-surface: #ffffff; --v-accent: #3f7a52; --v-accent-ink: #f3f8f1;
+    --v-hair: color-mix(in oklab, #13201a 14%, transparent); --v-hair-strong: color-mix(in oklab, #13201a 28%, transparent); color: var(--v-ink); border-color: transparent; }
+  .inter--dark .inter__num em { color: #3f7a52; }
   .folio.is-dark, .folio-m.is-dark { --v-ink: #f6f0e8; --v-ink-soft: #bcae9f; --v-canvas: #2b211b; --v-accent: #dcb68c; --v-hair-strong: color-mix(in oklab, #f6f0e8 32%, transparent); }
   .folio.is-dark .folio__dot span b { color: #f6f0e8; }
   .folio.is-dark .folio__dot span { color: #bcae9f; }
@@ -641,7 +641,7 @@
           <li><a href="#ch1"><img src="assets/foundation-t.webp" alt="" width="480" height="320" loading="lazy" decoding="async"><span><b>01</b>Фундамент</span></a></li>
           <li><a href="#ch2"><img src="assets/frame-t.webp" alt="" width="480" height="320" loading="lazy" decoding="async"><span><b>02</b>Коробка</span></a></li>
           <li><a href="#ch3"><img src="assets/roof-t.webp" alt="" width="480" height="320" loading="lazy" decoding="async"><span><b>03</b>Кровля</span></a></li>
-          <li><a href="#ch4"><img src="assets/interior-t.webp" alt="" width="480" height="320" loading="lazy" decoding="async"><span><b>04</b>Отделка</span></a></li>
+          <li><a href="#ch4"><img src="assets/interior-new-t.webp" alt="" width="480" height="320" loading="lazy" decoding="async"><span><b>04</b>Отделка</span></a></li>
           <li><a href="#ch5"><img src="assets/house-ready-t.webp" alt="" width="480" height="320" loading="lazy" decoding="async"><span><b>05</b>Сдача по акту</span></a></li>
         </ol>
       </div>
@@ -770,8 +770,8 @@
     <section class="v-section chapter--dark" data-v-act="flow" aria-label="Отделка: что делаем">
       <div class="v-wrap spread">
         <figure class="spread__fig" data-v-reveal="left" data-v-reveal-at="0.1 0.42">
-          <div class="fig"><div data-v-parallax="0.4"><img src="assets/interior.webp" alt="Интерьер в отделке: оштукатуренные стены, плитка и подготовка под фартук" width="1600" height="889" loading="lazy" decoding="async"></div></div>
-          <figcaption><b>4.1</b><span>Вагонка на одной стене, гипсокартон на другой. Электрика и вентиляция уже разведены за обшивкой.</span></figcaption>
+          <div class="fig"><div data-v-parallax="0.4"><img src="assets/interior-new.webp" alt="Светлый интерьер после отделки: большие окна, белые стены и светлое дерево" width="1600" height="889" loading="lazy" decoding="async"></div></div>
+          <figcaption><b>4.1</b><span>Гостиная после отделки: светлые стены, дерево и большие окна. Электрика и вентиляция разведены за обшивкой.</span></figcaption>
         </figure>
         <div class="spread__copy" data-v-in data-v-stagger="70">
           <span class="v-label">Этап 4 из 5</span>
@@ -1022,8 +1022,7 @@
       tops = chapters.map(function (c) { return c.getBoundingClientRect().top + y; });
       endTop = end.getBoundingClientRect().top + y;
       var d1 = document.querySelector('.inter--dark'), d2 = document.querySelector('.chapter--dark'), w = document.querySelector('.inter--wood');
-      darkFrom = d1.getBoundingClientRect().top + y;
-      darkTo = d2.getBoundingClientRect().bottom + y;
+      darkFrom = 0; darkTo = 0; /* блок «Отделка» светлый: тёмную схему фолио не включаем */
       warmFrom = w.getBoundingClientRect().top + y;
       warmTo = w.getBoundingClientRect().bottom + y;
       lastIdx = -2; lastDark = null; lastWarm = null; frame();

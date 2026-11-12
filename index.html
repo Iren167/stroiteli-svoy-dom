@@ -523,6 +523,22 @@
     .frame .frame__steps { display: none; }
   }
   @media (max-width: 860px) { .x-flat { position: static !important; height: auto !important; overflow: visible !important; } }
+
+  /* ---- раздел «Наши работы»: готовые постройки ---- */
+  .works__head { display: grid; gap: var(--v-3); max-width: 46rem; margin-bottom: var(--v-6); }
+  .works__head h2 { font-size: var(--v-t-2xl); }
+  .works__head p { color: var(--v-ink-soft); }
+  .works__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--v-4); }
+  .works__item { position: relative; overflow: hidden; border-radius: var(--v-radius); aspect-ratio: 4 / 3; background: var(--v-surface); box-shadow: var(--v-e1); }
+  .works__item--big { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+  .works__item figure { margin: 0; width: 100%; height: 100%; }
+  .works__item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s var(--v-ease-out); }
+  .works__item:hover img { transform: scale(1.06); }
+  .works__item figcaption { position: absolute; left: 12px; right: 12px; bottom: 12px; padding: .65rem .9rem; border-radius: 12px; background: color-mix(in oklab, var(--v-canvas) 80%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); display: grid; gap: .1rem; font-size: var(--v-t-sm); }
+  .works__item figcaption b { font-family: var(--v-font-display); font-weight: 600; }
+  .works__item figcaption span { color: var(--v-ink-soft); font-size: var(--v-t-xs); }
+  @media (max-width: 860px) { .works__grid { grid-template-columns: 1fr 1fr; } .works__item--big { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 4 / 3; } }
+  @media (max-width: 520px) { .works__grid { grid-template-columns: 1fr; } }
   /* ---- микро-взаимодействия кнопок ---- */
   .v-btn { position: relative; overflow: hidden; transition: transform .25s var(--v-ease-out), box-shadow .25s var(--v-ease-out), background-color .25s; }
   .v-btn::after { content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%; background: linear-gradient(100deg, transparent, rgb(255 255 255 / .45), transparent); transform: skewX(-20deg); transition: left .6s var(--v-ease-out); pointer-events: none; }
@@ -541,7 +557,7 @@
   <header class="topnav" id="topnav">
     <a class="topnav__mark" href="#top"><i aria-hidden="true"></i>Свой дом</a>
     <nav class="topnav__links" id="topnavLinks" aria-label="Разделы сайта">
-      <a href="#ch1">Фундамент</a><a href="#ch2">Коробка</a><a href="#ch3">Кровля</a><a href="#ch4">Отделка</a><a href="#ch5">Сдача</a><a href="#reviews">Отзывы</a><a href="#smeta">Смета</a>
+      <a href="#ch1">Фундамент</a><a href="#ch2">Коробка</a><a href="#ch3">Кровля</a><a href="#ch4">Отделка</a><a href="#ch5">Сдача</a><a href="#works">Работы</a><a href="#reviews">Отзывы</a><a href="#smeta">Смета</a>
     </nav>
     <a class="v-btn topnav__cta" href="#raschet">Рассчитать смету</a>
     <button class="topnav__burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="topnavLinks"><span></span></button>
@@ -575,7 +591,7 @@
           <img class="cover__img" src="assets/stage-plot.webp" alt="" width="1920" height="1067" decoding="async">
           <img class="cover__img" src="assets/stage-foundation.webp" alt="" width="1920" height="1067" decoding="async">
           <img class="cover__img" src="assets/stage-frame.webp" alt="" width="1920" height="1067" decoding="async">
-          <img class="cover__img" src="assets/cover.webp" alt="Каркасный дом под кровлей на участке. При прокрутке показаны стадии: каркас, фундамент, пустой участок" width="1920" height="1067" fetchpriority="high" decoding="async">
+          <img class="cover__img" src="assets/cover-house2.webp" alt="Готовый дом на участке. При прокрутке показаны стадии: каркас, фундамент, пустой участок" width="1920" height="1067" fetchpriority="high" decoding="async">
         </div>
         <div class="cover__scrim" aria-hidden="true"></div>
         <div class="v-wrap title">
@@ -796,6 +812,25 @@
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- НАШИ РАБОТЫ: готовые постройки (стоковые фото-примеры, заменить на объекты заказчика) -->
+    <section class="v-section works" data-v-act="flow" id="works" aria-label="Наши работы">
+      <div class="v-wrap">
+        <header class="works__head" data-v-in data-v-stagger="70">
+          <span class="v-label">Наши работы</span>
+          <h2 class="v-display">Дома и бани, которые мы построили</h2>
+          <p>Каждый объект принят по акту. Здесь примеры готовых построек: дома по каркасной технологии и бани.</p>
+        </header>
+        <ul class="works__grid" data-v-in data-v-stagger="60">
+          <li class="works__item works__item--big"><figure><img src="assets/works1.webp" alt="Двухэтажный дом с коричневым фасадом и балконом" loading="lazy" decoding="async"><figcaption><b>Двухэтажный дом 8×10</b><span>Каркас · 5 месяцев</span></figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works2.webp" alt="Дом-шале с остеклённым фасадом в лесу" loading="lazy" decoding="async"><figcaption><b>Дом-шале в лесу 7×9</b><span>Каркас · 3 месяца</span></figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works3.webp" alt="Баня из бревна с дымоходом в лесу" loading="lazy" decoding="async"><figcaption><b>Баня из бревна 4×6</b><span>Сруб · 2 месяца</span></figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works4.webp" alt="Дом-шале с остеклённым фасадом и террасой" loading="lazy" decoding="async"><figcaption><b>Дом-шале со стеклом</b><span>Каркас · 4 месяца</span></figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works5.webp" alt="Дом с мансардой и террасой на закате" loading="lazy" decoding="async"><figcaption><b>Дом с мансардой и террасой</b><span>Каркас · 6 месяцев</span></figcaption></figure></li>
+          <li class="works__item"><figure><img src="assets/works6.webp" alt="Дом в стиле барнхаус с металлической кровлей" loading="lazy" decoding="async"><figcaption><b>Дом в стиле барнхаус</b><span>Каркас · 5 месяцев</span></figcaption></figure></li>
+        </ul>
       </div>
     </section>
 

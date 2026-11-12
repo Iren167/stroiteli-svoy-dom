@@ -502,10 +502,14 @@
     .topnav__links { position: absolute; top: 100%; left: 0; right: 0; width: auto; margin: 0; padding: .2rem var(--v-gutter) .8rem; background: var(--v-canvas); border-bottom: 1px solid var(--v-hair); box-shadow: 0 14px 24px -12px rgb(var(--v-shadow-color) / .25); }
     .topnav__bar { left: 0; right: 0; }
     .folio-m { top: 3.2rem; }
-    .cover .title { padding-top: 4.3rem; }
-    .title__body { background: rgb(238 242 236 / .9); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); padding: 1rem 1.1rem 1.15rem; border-radius: 20px; }
+    /* титул без анимации: фото сверху, текст под ним, ничего не накладывается */
+    .cover { padding-top: 3.2rem; }
+    .cover .cover__stack { position: relative !important; top: auto !important; bottom: auto !important; inset: auto !important; height: 42svh !important; min-height: 220px; }
+    .cover .cover__img:not(:last-child) { display: none; }
+    .cover .cover__scrim, .cover .cover__scale, .cover .cover__state { display: none; }
+    .cover .title { height: auto !important; min-height: 0; padding-top: 1.4rem; padding-bottom: 1.6rem; justify-content: flex-start; }
+    .title__body { background: none; padding: 0; margin-top: 0; }
   }
-  @media (max-width: 600px) { .cover .title { padding-top: 4.1rem; } }
   /* ---- микро-взаимодействия кнопок ---- */
   .v-btn { position: relative; overflow: hidden; transition: transform .25s var(--v-ease-out), box-shadow .25s var(--v-ease-out), background-color .25s; }
   .v-btn::after { content: ""; position: absolute; top: 0; left: -70%; width: 45%; height: 100%; background: linear-gradient(100deg, transparent, rgb(255 255 255 / .45), transparent); transform: skewX(-20deg); transition: left .6s var(--v-ease-out); pointer-events: none; }
@@ -887,6 +891,13 @@
 
 <script src="vibe.js"></script>
 <script>
+  // Телефон: титул без закреплённой анимации (фото и текст обычной прокруткой), компьютер без изменений
+  var MOBILE = window.matchMedia('(max-width: 860px)').matches;
+  if (MOBILE) {
+    var cv = document.getElementById('cover');
+    cv.setAttribute('data-v-act', 'flow'); cv.removeAttribute('data-v-span');
+    var cue = cv.querySelector('.title__body[data-v-cue]'); if (cue) cue.removeAttribute('data-v-cue');
+  }
   Vibe.mount(document.querySelector('.v-page'));
 
   // Титул: «стройка наоборот». Четыре кадра одного ракурса лежат стопкой (в DOM снизу вверх:
@@ -896,6 +907,7 @@
   // поэтому переход чистый, без просвета сквозь два слоя. Подпись и шкала переключаются
   // на середине кроссфейда.
   (function () {
+    if (MOBILE) return;
     var act = document.getElementById('cover');
     var imgs = act.querySelectorAll('.cover__img');
     var states = document.getElementById('coverState').children;
